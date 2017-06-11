@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import com.darrenforsythe.mixinabstractclass.config.JacksonConfig;
 
@@ -44,6 +43,15 @@ public class ControllerTest {
 	public void testCatPost() throws Exception {
 		mvc.perform(post("/").contentType(MediaType.APPLICATION_JSON).content(CAT)).andExpect(status().isOk())
 				.andExpect(content().json(CAT));
+	}
+
+	@Test
+	public void testCollectionOfAnimal() throws Exception {
+
+		String arrayOfanimal = "[ " + DOG + "," + CAT + "]";
+
+		mvc.perform(post("/collection").contentType(MediaType.APPLICATION_JSON).content(arrayOfanimal)).andExpect(status().isOk())
+				.andExpect(content().json(arrayOfanimal));
 	}
 
 }

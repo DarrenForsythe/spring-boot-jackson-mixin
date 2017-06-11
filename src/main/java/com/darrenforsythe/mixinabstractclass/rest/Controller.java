@@ -1,5 +1,7 @@
 package com.darrenforsythe.mixinabstractclass.rest;
 
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,15 @@ public class Controller {
 		log.info("Recieved animal of type - {}", animal.getClass().toGenericString());
 
 		return new ResponseEntity<Animal>(animal, HttpStatus.OK);
+	}
+
+	@PostMapping(path = "/collection")
+	public ResponseEntity<Collection<Animal>> get(@RequestBody Collection<Animal> animals) {
+
+		animals.stream()
+				.forEach(animal -> log.info("Recieved animal of type - {}", animal.getClass().toGenericString()));
+
+		return new ResponseEntity<Collection<Animal>>(animals, HttpStatus.OK);
 	}
 
 }

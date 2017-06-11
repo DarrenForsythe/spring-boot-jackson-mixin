@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+import com.darrenforsythe.mixinabstractclass.config.AnimalMixin;
+import com.darrenforsythe.mixinabstractclass.model.Animal;
+
 @SpringBootApplication
 public class MixinabstractclassApplication {
 
@@ -12,10 +15,4 @@ public class MixinabstractclassApplication {
 		SpringApplication.run(MixinabstractclassApplication.class, args);
 	}
 
-	@Bean
-	public Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder() {
-		Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder = new Jackson2ObjectMapperBuilder();
-		jackson2ObjectMapperBuilder.mixIn(Animal.class, AnimalMixin.class);
-		return jackson2ObjectMapperBuilder;
-	}
 }

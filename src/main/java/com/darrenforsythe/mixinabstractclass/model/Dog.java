@@ -1,4 +1,4 @@
-package com.darrenforsythe.mixinabstractclass;
+package com.darrenforsythe.mixinabstractclass.model;
 
 public class Dog extends Animal {
 

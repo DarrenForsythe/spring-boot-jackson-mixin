@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.darrenforsythe.mixinabstractclass;
+package com.darrenforsythe.mixinabstractclass.model;
 
 /**
  * @author Darren

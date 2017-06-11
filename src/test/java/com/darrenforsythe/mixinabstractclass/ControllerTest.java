@@ -4,6 +4,7 @@
 package com.darrenforsythe.mixinabstractclass;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import com.darrenforsythe.mixinabstractclass.config.JacksonConfig;
 
@@ -26,22 +28,22 @@ import com.darrenforsythe.mixinabstractclass.config.JacksonConfig;
 @Import(JacksonConfig.class)
 public class ControllerTest {
 
+	private static final String DOG = "{\"type\":\"dog\",\"name\":\"Spike\",\"breed\":\"mutt\"}";
+	private static final String CAT = " {\"type\":\"cat\",\"name\":\"Fluffy\",  \"favoriteToy\":\"spider ring\"}";
 	@Autowired
 	private MockMvc mvc;
-	
 
 	@Test
 	public void testDogPost() throws Exception {
-		mvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
-				.content("{\"type\":\"dog\",\"name\":\"Spike\",\"breed\":\"mutt\"}")).andExpect(status().isOk());
+		mvc.perform(post("/").contentType(MediaType.APPLICATION_JSON).content(DOG)).andExpect(status().isOk())
+				.andExpect(content().json(DOG));
 
 	}
 
 	@Test
 	public void testCatPost() throws Exception {
-		mvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
-				.content(" {\"type\":\"cat\",\"name\":\"Fluffy\",  \"favorite_toy\":\"spider ring\"}"))
-				.andExpect(status().isOk());
+		mvc.perform(post("/").contentType(MediaType.APPLICATION_JSON).content(CAT)).andExpect(status().isOk())
+				.andExpect(content().json(CAT));
 	}
 
 }

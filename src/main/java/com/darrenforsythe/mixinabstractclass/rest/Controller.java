@@ -16,11 +16,11 @@ public class Controller {
 	private static final Logger log = LoggerFactory.getLogger(Controller.class);
 
 	@PostMapping(path = "/")
-	public ResponseEntity<String> get(@RequestBody Animal animal) {
+	public ResponseEntity<Animal> get(@RequestBody Animal animal) {
 
 		log.info("Recieved animal of type - {}", animal.getClass().toGenericString());
 
-		return new ResponseEntity<String>(animal.toString(), HttpStatus.OK);
+		return new ResponseEntity<Animal>(animal, HttpStatus.OK);
 	}
 
 }

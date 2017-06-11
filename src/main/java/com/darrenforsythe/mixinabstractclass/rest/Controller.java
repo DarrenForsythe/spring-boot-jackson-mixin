@@ -17,19 +17,19 @@ public class Controller {
 
 	private static final Logger log = LoggerFactory.getLogger(Controller.class);
 
-	@PostMapping(path = "/")
+	@PostMapping(path = "/animal")
 	public ResponseEntity<Animal> get(@RequestBody Animal animal) {
 
-		log.info("Recieved animal of type - {}", animal.getClass().toGenericString());
+		log.info("Recieved animal of type - {} in /animal", animal.getClass().toGenericString());
 
 		return new ResponseEntity<Animal>(animal, HttpStatus.OK);
 	}
 
-	@PostMapping(path = "/collection")
+	@PostMapping(path = "/animals")
 	public ResponseEntity<Collection<Animal>> get(@RequestBody Collection<Animal> animals) {
 
 		animals.stream()
-				.forEach(animal -> log.info("Recieved animal of type - {}", animal.getClass().toGenericString()));
+				.forEach(animal -> log.info("Recieved animal of type - {} - in /animals", animal.getClass().toGenericString()));
 
 		return new ResponseEntity<Collection<Animal>>(animals, HttpStatus.OK);
 	}

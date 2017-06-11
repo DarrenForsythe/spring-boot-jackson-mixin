@@ -34,14 +34,14 @@ public class ControllerTest {
 
 	@Test
 	public void testDogPost() throws Exception {
-		mvc.perform(post("/").contentType(MediaType.APPLICATION_JSON).content(DOG)).andExpect(status().isOk())
+		mvc.perform(post("/animal").contentType(MediaType.APPLICATION_JSON).content(DOG)).andExpect(status().isOk())
 				.andExpect(content().json(DOG));
 
 	}
 
 	@Test
 	public void testCatPost() throws Exception {
-		mvc.perform(post("/").contentType(MediaType.APPLICATION_JSON).content(CAT)).andExpect(status().isOk())
+		mvc.perform(post("/animal").contentType(MediaType.APPLICATION_JSON).content(CAT)).andExpect(status().isOk())
 				.andExpect(content().json(CAT));
 	}
 
@@ -50,7 +50,7 @@ public class ControllerTest {
 
 		String arrayOfanimal = "[ " + DOG + "," + CAT + "]";
 
-		mvc.perform(post("/collection").contentType(MediaType.APPLICATION_JSON).content(arrayOfanimal)).andExpect(status().isOk())
+		mvc.perform(post("/animals").contentType(MediaType.APPLICATION_JSON).content(arrayOfanimal)).andExpect(status().isOk())
 				.andExpect(content().json(arrayOfanimal));
 	}
 

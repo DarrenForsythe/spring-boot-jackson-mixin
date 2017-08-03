@@ -1,9 +1,10 @@
-package com.darrenforsythe.mixinabstractclass.config;
+package com.darrenforsythe.notscanned;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+import com.darrenforsythe.mixinabstractclass.config.AnimalMixin;
 import com.darrenforsythe.mixinabstractclass.model.Animal;
 
 @Configuration
